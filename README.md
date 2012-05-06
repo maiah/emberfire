@@ -19,9 +19,11 @@ And override "emberFireConf" property to provide your firebase location through 
 
 var firebaseLocation = "/your_root_location_here";<br />
 var personConf = { <br />
-  locationUrl: firebaseLocation + "/person", <br />
-  isList: false <br />
-}; <br />
-Person = EmberFire.extend({ emberFireConf: personConf });
+&nbsp;&nbsp;locationUrl: firebaseLocation + "/person", <br />
+&nbsp;&nbsp;isList: false <br />
+}; <br /><br />
+Person = EmberFire.extend({ <br />
+&nbsp;&nbsp;emberFireConf: personConf <br />
+});
 
 Once you are done specifying this configuration you can add your own properties and the EmberFire will automatically sync your Emberjs model to its Firebase location.
