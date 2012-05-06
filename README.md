@@ -1,4 +1,4 @@
-emberfire
+EmberFire
 =========
 
 Emberjs and Firebase Integration
@@ -13,20 +13,14 @@ Just add the emberfire.js file in your html.
 Example usage
 ==============
 
-[app.js]
+To have an Emberjs model that is Firebase location aware you just have extend the EmberFire model:
+
+Person = EmberFire.extend({});
+
+And override "emberFireConf" property to provide your firebase location through "locationUrl" property and the "isList" property to tell if location contains a list or not.
 
 var firebaseLocation = "/your_root_location_here";
+var personConf = { locationUrl: firebaseLocation + "/person", isList: false };
+Person = EmberFire.extend({ emberFireConf: personConf });
 
-var personConf = {
-    locationUrl: firebaseLocation + "/person",
-    isList: false
-}
-
-Person = EmberFire.extend({
-  emberFireConf: personConf,
-
-  firstName: "",
-  lastName: "",
-  age: 0,
-  address: ""
-});
+Once you are done specifying this configuration you can add your own properties and the EmberFire will automatically sync your Emberjs model to its Firebase location.

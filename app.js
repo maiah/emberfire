@@ -20,7 +20,7 @@ App.person.initialize();
 var userConf = {
     locationUrl: firebaseLocation + "/users/maiah",
     isList: false
-}
+};
 
 User = EmberFire.extend({
   emberFireConf: userConf,
