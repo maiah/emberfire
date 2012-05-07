@@ -34,6 +34,7 @@ var personConf = {
   locationUrl: firebaseLocation + "/person",
   isList: false
 };
+
 Person = EmberFire.extend({
   emberFireConf: personConf
 });
@@ -42,18 +43,23 @@ Person = EmberFire.extend({
 [Step 3] <br />
 Once you are done specifying this configuration you can add your own properties to your Emberjs model:
 
-Person = EmberFire.extend({ <br />
-&nbsp;&nbsp;emberFireConf: personConf, <br />
-<br />
-&nbsp;&nbsp;firstName: "", <br />
-&nbsp;&nbsp;lastName: "", <br />
-&nbsp;&nbsp;age: "", <br />
-&nbsp;&nbsp;address: "" <br />
+```javascript
+Person = EmberFire.extend({
+  emberFireConf: personConf,
+
+  firstName: "",
+  lastName: "",
+  age: "",
+  address: ""
 });
+```
 
 [Step 4] <br />
 And then you can create an instance of your model and call the "initialize" method to get its value based on the Firebase location you specified and it will automatically sync any updates on your Emberjs model.
 
-window.App = Ember.Application.create(); <br />
-App.person = Person.create(); <br />
+```javascript
+window.App = Ember.Application.create();
+
+App.person = Person.create();
 App.person.initialize();
+```
