@@ -23,7 +23,9 @@ Sample Firebase location data:
 [Step 1] <br />
 To have an Emberjs model that is Firebase-location-aware, you just have to extend the EmberFire model:
 
+```javascript
 Person = EmberFire.extend({});
+```
 
 [Step 2] <br />
 And override "emberFireConf" property to provide your firebase location through "locationUrl" property and the "isList" property to tell if location contains a list or not.
