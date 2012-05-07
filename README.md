@@ -11,6 +11,15 @@ Just add the "emberfire.js" file in your html.
 Example usage
 ==============
 
+Firebase location model:
+
+/myapp
+&nbsp;&nbsp;&nbsp;&nbsp; - person
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - firstName: "Juan"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - lastName: "Pedro"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - age: "17"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - address: "Manila"
+
 [Step 1] <br />
 To have an Emberjs model that is Firebase-location-aware, you just have to extend the EmberFire model:
 
