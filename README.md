@@ -28,14 +28,16 @@ Person = EmberFire.extend({});
 [Step 2] <br />
 And override "emberFireConf" property to provide your firebase location through "locationUrl" property and the "isList" property to tell if location contains a list or not.
 
-var firebaseLocation = "/myapp";<br />
-var personConf = { <br />
-&nbsp;&nbsp;locationUrl: firebaseLocation + "/person", <br />
-&nbsp;&nbsp;isList: false <br />
-}; <br /><br />
-Person = EmberFire.extend({ <br />
-&nbsp;&nbsp;emberFireConf: personConf <br />
+```javascript
+var firebaseLocation = "/myapp";
+var personConf = {
+  locationUrl: firebaseLocation + "/person",
+  isList: false
+};
+Person = EmberFire.extend({
+  emberFireConf: personConf
 });
+```
 
 [Step 3] <br />
 Once you are done specifying this configuration you can add your own properties to your Emberjs model:
