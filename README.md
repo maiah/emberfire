@@ -11,10 +11,12 @@ Just add the "emberfire.js" file in your html.
 Example usage
 ==============
 
+[Step 1]
 To have an Emberjs model that is Firebase-location-aware, you just have to extend the EmberFire model:
 
 Person = EmberFire.extend({});
 
+[Step 2]
 And override "emberFireConf" property to provide your firebase location through "locationUrl" property and the "isList" property to tell if location contains a list or not.
 
 var firebaseLocation = "/myapp";<br />
@@ -26,7 +28,8 @@ Person = EmberFire.extend({ <br />
 &nbsp;&nbsp;emberFireConf: personConf <br />
 });
 
-Once you are done specifying this configuration you can add your own properties on your Emberjs model:
+[Step 3]
+Once you are done specifying this configuration you can add your own properties to your Emberjs model:
 
 Person = EmberFire.extend({ <br />
 &nbsp;&nbsp;emberFireConf: personConf, <br />
@@ -37,8 +40,9 @@ Person = EmberFire.extend({ <br />
 &nbsp;&nbsp;address: "" <br />
 });
 
-And then you can create an instance of you model and call the "initialize" method to get its value based on the Firebase location you specified and it will automatically sync any updates on your Emberjs model.
+[Step 4]
+And then you can create an instance of your model and call the "initialize" method to get its value based on the Firebase location you specified and it will automatically sync any updates on your Emberjs model.
 
-window.App = Ember.Application.create();
-App.person = Person.create();
+window.App = Ember.Application.create(); <br />
+App.person = Person.create(); <br />
 App.person.initialize();
