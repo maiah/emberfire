@@ -13,7 +13,7 @@ Example usage
 
 Sample Firebase location data:
 
-/myapp
+/myapp <br />
 &nbsp;&nbsp;&nbsp;&nbsp; - person <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - firstName: "Juan" <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - lastName: "Pedro" <br />
