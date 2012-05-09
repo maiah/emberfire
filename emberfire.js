@@ -43,7 +43,7 @@ EmberFire = Ember.Object.extend({
   },
 
   remove: function() {
-    console.log("Remove operation not yet supported.");
+    this.firebaseLocation.remove();
   }
 
 });
