@@ -1,12 +1,11 @@
 ﻿$(function() {
 window.App = Ember.Application.create();
-var firebaseLocation = "/your_root_location_here";
+var firebaseLocation = "/myapp";
 
 Person = EmberFire.extend({
-  emberFireConf: {
-    locationUrl: firebaseLocation + "/person",
-    isList: false
-  },
+  locationUrl: firebaseLocation + "/person",
+  isList: false,
+  modelProperties: ["firstName", "lastName", "age", "address"],
 
   firstName: "",
   lastName: "",
@@ -17,13 +16,12 @@ Person = EmberFire.extend({
 App.person = Person.create();
 App.person.initialize();
 
-var userConf = {
-    locationUrl: firebaseLocation + "/users/maiah",
-    isList: false
-};
+App.person.set("firstName", "Maiah");
 
 User = EmberFire.extend({
-  emberFireConf: userConf,
+  locationUrl: firebaseLocation + "/users/maiah",
+  isList: false,
+  modelProperties: ["name", "groups"],
 
   name: {
     first: "",

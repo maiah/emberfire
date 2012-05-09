@@ -4,10 +4,9 @@ EmberFire
 Emberjs and Firebase Integration
 
 This library provides a base Emberjs model that does the retrieving and syncing of your object's property to your specific Firebase location.
-This is just the initial implementation and only provides read and update. No removal for now but it will come next. 
+This is just the initial implementation and only provides create, read, and update. No removal for now but it will come next.
 
-Installation
-============
+## Installation
 
 Just add the "emberfire.js" file in your html.
 
@@ -15,8 +14,7 @@ Just add the "emberfire.js" file in your html.
 <script type="text/javascript" src="./emberfire.js"></script>
 ```
 
-Example usage
-==============
+## Example usage
 
 Sample Firebase location data:
 
@@ -35,26 +33,30 @@ Person = EmberFire.extend({});
 ```
 
 [Step 2] <br />
-And override "emberFireConf" property to provide your firebase location through "locationUrl" property and the "isList" property to tell if location contains a list or not.
+Provide these properties to give default values:
+
+ * `locationUrl` -- property to specify you firebase location.
+ * `isList` -- property to tell if location contains a list or not.
+ * `modelProperties` -- property to specify the firebase location properties.
 
 ```javascript
 var firebaseLocation = "/myapp";
-var personConf = {
-  locationUrl: firebaseLocation + "/person",
-  isList: false
-};
 
 Person = EmberFire.extend({
-  emberFireConf: personConf
+  locationUrl: firebaseLocation + "/person",
+  isList: false,
+  modelProperties: ["firstName", "lastName", "age", "address"]
 });
 ```
 
 [Step 3] <br />
-Once you are done specifying this configuration you can add your own properties to your Emberjs model:
+Once you are done specifying this configuration you can "optionally" add your own properties to your Emberjs model and specify their default values:
 
 ```javascript
 Person = EmberFire.extend({
-  emberFireConf: personConf,
+  locationUrl: firebaseLocation + "/person",
+  isList: false,
+  modelProperties: ["firstName", "lastName", "age", "address"]
 
   firstName: "",
   lastName: "",

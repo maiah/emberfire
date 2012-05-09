@@ -1,39 +1,49 @@
 FirebaseServer = "http://gamma.firebase.com";
 
 EmberFire = Ember.Object.extend({
-  emberFireConf: {
-    locationUrl: "/",
-    isList: false
-  },
+  locationUrl: "/",
+  isList: false,
+  modelProperties: [],
 
-  firebaseLocation: function() {
-    return new Firebase(FirebaseServer + this.emberFireConf.locationUrl);
-  },
+  firebaseLocation: null,
 
   initialize: function() {
-    var readEvent = this.emberFireConf.isList ? "child_added" : "value";
-
-    // Get the firebase object
+    this.firebaseLocation = new Firebase(FirebaseServer + this.locationUrl);
+    var props = this.modelProperties;
+    var readEvent = this.isList ? "child_added" : "value";
     var instance = this;
-    this.firebaseLocation().on("value", function(snapshot) {
-      var props = {};
-      var val = snapshot.val();
-      for (var prop in val) {
-        instance.set(prop, val[prop]);
-        props[prop] = "";
-      }
 
-      // Add observers on the emberjs object
-      for (var prop in props) {
-        instance.addObserver(prop, function() {
-          var values = {};
-          for (var p in props) {
-            values[p] = instance.get(p);
-          }
-          instance.firebaseLocation().set(values);
-        });
+    // Get the firebase object then set the values
+    this.firebaseLocation.on("value", function(snapshot) {
+      var val = snapshot.val();
+      if (val !== null) {
+
+        for (var i = 0; i < props.length; i++) {
+          var prop = props[i],
+            valueToSet = val[prop];
+          values = {};
+          values[prop] = valueToSet;
+          instance.reopen(values);
+        }
       }
     });
+
+    // Add observers on the emberjs object properties
+    for (var i = 0; i < props.length; i++) {
+      var prop = props[i];
+      this.addObserver(prop, function() {
+        var values = {};
+        for (var j = 0; j < props.length; j++) {
+          var p = props[j];
+          values[p] = instance.get(p);
+        }
+        instance.firebaseLocation.set(values);
+      });
+    }
+  },
+
+  remove: function() {
+    console.log("Remove operation not yet supported.");
   }
 
 });
