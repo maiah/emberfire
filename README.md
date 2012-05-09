@@ -4,7 +4,6 @@ EmberFire
 Emberjs and Firebase Integration
 
 This library provides a base Emberjs model that does the retrieving and syncing of your object's property to your specific Firebase location.
-This is just the initial implementation and only provides create, read, and update. No removal for now but it will come next.
 
 ## Installation
 
@@ -26,7 +25,7 @@ Sample Firebase location data:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - address: "Manila" <br />
 
 [Step 1] <br />
-To have an Emberjs model that is Firebase-location-aware, you just have to extend the EmberFire model:
+To have an Emberjs model that is Firebase-location-aware, you just have to extend the "EmberFire" model:
 
 ```javascript
 Person = EmberFire.extend({});
@@ -66,11 +65,17 @@ Person = EmberFire.extend({
 ```
 
 [Step 4] <br />
-And then you can create an instance of your model and call the "initialize" method to get its value based on the Firebase location you specified and it will automatically sync any updates on your Emberjs model.
+And then you can create an instance of your model and call the "initialize()" method to get its value based on the Firebase location you specified and it will automatically sync any updates on your Emberjs model.
 
 ```javascript
 window.App = Ember.Application.create();
 
 App.person = Person.create();
 App.person.initialize();
+```
+
+If you want to delete the whole model on your Firebase location just call the "remove()" method.
+
+```javascript
+App.person.remove();
 ```
