@@ -18,12 +18,12 @@ Just add the "emberfire.js" file in your html.
 Sample Firebase location data:
 
 ```
-/myapp <br />
-    - person
-      - firstName: "Juan"
-      - lastName: "Pedro"
-      - age: "17"
-      - address: "Manila"
+/myapp
+  - person
+    - firstName: "Juan"
+    - lastName: "Pedro"
+    - age: "17"
+    - address: "Manila"
 ```
 
 [Step 1] <br />
@@ -37,7 +37,7 @@ Person = EmberFire.extend({});
 Provide these properties to give default values:
 
  * `locationUrl` -- property to specify your firebase location.
- * `isList` -- property to tell if the firebase location contains a list or not.
+ * `isList` -- (default is `false`) property to tell if the firebase location contains a list or not.
  * `modelProperties` -- property to enumerate the firebase location properties.
 
 ```javascript
@@ -45,7 +45,6 @@ var firebaseLocation = "/myapp";
 
 Person = EmberFire.extend({
   locationUrl: firebaseLocation + "/person",
-  isList: false,
   modelProperties: ["firstName", "lastName", "age", "address"]
 });
 ```
@@ -67,13 +66,11 @@ Person = EmberFire.extend({
 ```
 
 [Step 4] <br />
-And then you can create an instance of your model and call the "initialize()" method to get its value based on the Firebase location you specified and it will automatically sync any updates on your Ember.js model.
+And then you can create an instance of your model and it will automatically sync any updates on your Ember.js model.
 
 ```javascript
 window.App = Ember.Application.create();
-
 App.person = Person.create();
-App.person.initialize();
 ```
 
 If you want to delete the whole model on your Firebase location just call the "remove()" method.
