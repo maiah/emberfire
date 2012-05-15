@@ -4,7 +4,6 @@ var firebaseLocation = "/myapp";
 
 Person = EmberFire.extend({
   locationUrl: firebaseLocation + "/person",
-  isList: false,
   modelProperties: ["firstName", "lastName", "age", "address"],
 
   firstName: "",
@@ -14,9 +13,6 @@ Person = EmberFire.extend({
 });
 
 App.person = Person.create();
-App.person.initialize();
-
-App.person.set("firstName", "Maiah");
 
 User = EmberFire.extend({
   locationUrl: firebaseLocation + "/users/maiah",
@@ -32,7 +28,7 @@ User = EmberFire.extend({
   }]
 });
 
-App.user = User.create();
-App.user.initialize();
+//App.user = User.create();
+//App.user.initialize();
 
 });

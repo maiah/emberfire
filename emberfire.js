@@ -6,44 +6,101 @@ EmberFire = Ember.Object.extend({
   modelProperties: [],
 
   firebaseLocation: null,
+  defaultValues: {},
+  isRemoved: false,
 
-  initialize: function() {
+  init: function() {
+    this._super();
+
     this.firebaseLocation = new Firebase(FirebaseServer + this.locationUrl);
-    var props = this.modelProperties;
-    var readEvent = this.isList ? "child_added" : "value";
-    var instance = this;
+    var props = this.modelProperties,
+      readEvent = this.isList ? "child_added" : "value",
+      instance = this;
+
+    // Store default values
+    for (var i = 0; i < props.length; i++) {
+      var prop = props[i];
+      this.defaultValues[prop] = this.get(prop);
+    }
 
     // Get the firebase object then set the values
-    this.firebaseLocation.on("value", function(snapshot) {
+    this.firebaseLocation.on(readEvent, function(snapshot) {
       var val = snapshot.val();
       if (val !== null) {
 
         for (var i = 0; i < props.length; i++) {
           var prop = props[i],
-            valueToSet = val[prop];
-          values = {};
+            valueToSet = val[prop],
+            values = {};
           values[prop] = valueToSet;
-          instance.reopen(values);
+          instance.set(prop, valueToSet);
         }
       }
     });
 
-    // Add observers on the emberjs object properties
+    // Add observers on the Ember.js object properties
     for (var i = 0; i < props.length; i++) {
       var prop = props[i];
       this.addObserver(prop, function() {
-        var values = {};
-        for (var j = 0; j < props.length; j++) {
-          var p = props[j];
-          values[p] = instance.get(p);
+        if (!instance.isRemoved) {
+          syncValues(instance);
         }
-        instance.firebaseLocation.set(values);
       });
     }
+
+    // Add event handler when "remove" event is triggered by Firebase
+    this.firebaseLocation.on("child_removed", function(oldChildSnapshot) {
+      if (this.isList) {
+        // TODO!
+      } else {
+        console.log(oldChildSnapshot);
+        instance.isRemoved = true;
+        resetToDefaultValues(instance);
+      }
+    });
   },
 
+  // Re-syncs the Ember.js model to its Firebase location
+  save: function() {
+    this.isRemoved = false;
+    syncValues(this);
+  },
+
+  /* Fires "remove" operation to its Firebase location and removes the syncronization of Ember.js
+   * model from its Firebase location
+   */
   remove: function() {
-    this.firebaseLocation.remove();
+    var instance = this,
+      props = this.modelProperties;
+
+    this.firebaseLocation.remove(function(success) {
+      if (success) {
+        instance.isRemoved = true;
+        resetToDefaultValues(instance);
+
+      } else {
+        console.log("Removal failed.");
+      }
+    });
   }
 
 });
+
+// Syncs the Ember.js model properties to its Firebase location.
+var syncValues = function(model) {
+  var values = {};
+  for (var j = 0; j < model.modelProperties.length; j++) {
+    var p = model.modelProperties[j];
+    values[p] = model.get(p);
+  }
+  model.firebaseLocation.set(values);
+};
+
+// Resets the Ember.js model to default values
+var resetToDefaultValues = function(model) {
+  var props = model.modelProperties;
+  for (var i = 0; i < props.length; i++) {
+    var prop = props[i];
+    model.set(prop, model.defaultValues[prop]);
+  }
+};

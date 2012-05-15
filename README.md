@@ -1,9 +1,9 @@
 EmberFire
 =========
 
-Emberjs and Firebase Integration
+[Ember.js](http://emberjs.com) and [Firebase](http://www.firebase.com) Integration
 
-This library provides a base Emberjs model that does the retrieving and syncing of your object's property to your specific Firebase location.
+This library provides a base Ember.js model that does the retrieving and syncing of your object's property to your specific Firebase location.
 
 ## Installation
 
@@ -17,15 +17,17 @@ Just add the "emberfire.js" file in your html.
 
 Sample Firebase location data:
 
+```
 /myapp <br />
-&nbsp;&nbsp;&nbsp;&nbsp; - person <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - firstName: "Juan" <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - lastName: "Pedro" <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - age: "17" <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - address: "Manila" <br />
+    - person
+      - firstName: "Juan"
+      - lastName: "Pedro"
+      - age: "17"
+      - address: "Manila"
+```
 
 [Step 1] <br />
-To have an Emberjs model that is Firebase-location-aware, you just have to extend the "EmberFire" model:
+To have an Ember.js model that is Firebase-location-aware, you just have to extend the "EmberFire" model:
 
 ```javascript
 Person = EmberFire.extend({});
@@ -49,7 +51,7 @@ Person = EmberFire.extend({
 ```
 
 [Step 3] <br />
-Once you are done specifying this configuration you can "optionally" add your own properties to your Emberjs model and specify their default values:
+Once you are done specifying this configuration you can "optionally" add your own properties to your Ember.js model and specify their default values:
 
 ```javascript
 Person = EmberFire.extend({
@@ -65,7 +67,7 @@ Person = EmberFire.extend({
 ```
 
 [Step 4] <br />
-And then you can create an instance of your model and call the "initialize()" method to get its value based on the Firebase location you specified and it will automatically sync any updates on your Emberjs model.
+And then you can create an instance of your model and call the "initialize()" method to get its value based on the Firebase location you specified and it will automatically sync any updates on your Ember.js model.
 
 ```javascript
 window.App = Ember.Application.create();
