@@ -1,6 +1,6 @@
 ﻿$(function() {
 window.App = Ember.Application.create();
-var firebaseLocation = "/myapp";
+var firebaseLocation = "/teemail";
 
 Person = EmberFire.extend({
   locationUrl: firebaseLocation + "/person",
@@ -12,7 +12,7 @@ Person = EmberFire.extend({
   address: ""
 });
 
-App.person = Person.create();
+//App.person = Person.create();
 
 User = EmberFire.extend({
   locationUrl: firebaseLocation + "/users/maiah",
@@ -30,5 +30,20 @@ User = EmberFire.extend({
 
 //App.user = User.create();
 //App.user.initialize();
+
+Soldier = EmberFire.extend({
+  locationUrl: firebaseLocation + "/soldiers",
+  isListItem: true,
+  modelProperties: ["name", "type", "rank"],
+
+  name: "",
+  type: "",
+  rank: ""
+});
+
+App.maco = Soldier.create({
+  listId: "-ISOZB4BY9QWkj-tqE3a",
+  name: "Maco"
+});
 
 });
