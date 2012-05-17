@@ -37,7 +37,8 @@ Person = EmberFire.extend({});
 Provide these properties to give default values:
 
  * `locationUrl` -- property to specify your firebase location.
- * `isList` -- (default is `false`) property to tell if the firebase location contains a list or not.
+ * `isListItem` -- `default is false` property to tell if this firebase location a list item or not.
+ * `listId` -- needed if `isListItem` is set to `true` and it is already existing in the firebase location.
  * `modelProperties` -- property to enumerate the firebase location properties.
 
 ```javascript
@@ -55,7 +56,6 @@ Once you are done specifying this configuration you can "optionally" add your ow
 ```javascript
 Person = EmberFire.extend({
   locationUrl: firebaseLocation + "/person",
-  isList: false,
   modelProperties: ["firstName", "lastName", "age", "address"]
 
   firstName: "",
