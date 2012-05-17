@@ -1,6 +1,6 @@
 ﻿$(function() {
 window.App = Ember.Application.create();
-var firebaseLocation = "/teemail";
+var firebaseLocation = "/myapp";
 
 Person = EmberFire.extend({
   locationUrl: firebaseLocation + "/person",
